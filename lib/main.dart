@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Kaal Calculator',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.lightBlue[50], // Setting light blue as the background color
       ),
       home: KaalCalculator(),
     );
@@ -137,8 +138,11 @@ class _KaalCalculatorState extends State<KaalCalculator> {
                 itemBuilder: (context, index) {
                   String key = kaals.keys.elementAt(index);
                   return ListTile(
-                    leading: Icon(Icons.access_time), // Icon for the Kaal
-                    title: Text(key),
+                    leading: Icon(Icons.sentiment_very_satisfied), // Icon for the Kaal
+                    title: Text(key,
+                      style: TextStyle(
+                        color: Colors.blue, // Change this to your desired color
+                      ),),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
