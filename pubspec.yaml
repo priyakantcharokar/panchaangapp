@@ -25,6 +25,6 @@ flutter:
         fonts:
           - asset: fonts/Lato/Lato-Regular.ttf
           - asset: fonts/Lato/Lato-Bold.ttf
-            weight: 700
+            weight: 900
   assets:
     - assets/images/logo.png

@@ -87,10 +87,10 @@ class _KaalCalculatorState extends State<KaalCalculator> {
     String yamagandaKaalTimeString = formatKaalTime(yamagandaKaalStart) + " - " + formatKaalTime(yamagandaKaalEnd);
 
     return {
+      "Abhijit Muhurat": abhijitMuhuratTimeString,
       "Rahu Kaal": rahuKaalTimeString,
       "Gulika Kaal": gulikaKaalTimeString,
-      "Yamaganda Kaal": yamagandaKaalTimeString,
-      "Abhijit Muhurat": abhijitMuhuratTimeString
+      "Yamaganda Kaal": yamagandaKaalTimeString
       // Add more Kaals here
     };
   }
@@ -164,29 +164,36 @@ class _KaalCalculatorState extends State<KaalCalculator> {
                 itemBuilder: (context, index) {
                   String key = kaals.keys.elementAt(index);
                   Color textColor;
+                  double textSize;
 
                   // Change text color based on the key
                   if (key == 'Rahu Kaal' || key == 'Gulika Kaal' || key == 'Yamaganda Kaal') {
                     textColor = Colors.red; // Set text color to red for specific Kaals
+                    textSize = 18.0;
                   } else {
                     textColor = Colors.green; // Set text color to green for other Kaals
+                    textSize = 24.0;
                   }
                   return ListTile(
                     // leading: Icon(Icons.lock_clock_rounded), // Icon for the Kaal
                     leading: IconButton(
-                      icon: Icon(Icons.question_mark_outlined),
+                      icon: Icon(Icons.shield_moon_rounded),
                       iconSize: 20.0, // Adjust the size as needed, 20.0 is an example for a smaller icon
                       onPressed: () {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
+                            // make alert dialog background transparent color light blue
                             return AlertDialog(
-                              title: Text(key,
-                                textAlign: TextAlign.center),
-                              content: Text(kaalDescriptions[key] ?? "No description available."),
+                              backgroundColor: Colors.lightBlueAccent,
 
+                              //change text to size 24
+                              title: Text(key, textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
+                              // change content to size 30
+                              content: Text(kaalDescriptions[key] ?? "No description available.", textAlign: TextAlign.justify, style: TextStyle(fontSize: 20)),
                               actions: [
                                 TextButton(
+                                  // make close button centered
                                   child: Text("Close"),
                                   onPressed: () {
                                     Navigator.of(context).pop();
@@ -200,15 +207,16 @@ class _KaalCalculatorState extends State<KaalCalculator> {
                     ),
                     title: Text(key,
                       style: TextStyle(
-                        color: textColor, // Change this to your desired color
+                        color: textColor, fontSize: textSize // Change this to your desired color
                       ),
                     ),
+
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(kaals[key]!,
-                          style: TextStyle(color: textColor)),
-
+                        // make this Text size bigger
+                        // Text(kaals[key]!, style: TextStyle(color: textColor, fontSize: 20)),
+                         Text(kaals[key]!, style: TextStyle(color: textColor, fontSize: textSize)),
                       ],
                     ),
                   );
